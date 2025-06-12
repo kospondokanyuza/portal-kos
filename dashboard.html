@@ -28,24 +28,30 @@
     <tbody></tbody>
   </table>
 
-  <script>
-    window.addEventListener("DOMContentLoaded", () => {
-      const tbody = document.querySelector("#tabelPenghuni tbody");
+ <script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const penghuni = JSON.parse(localStorage.getItem("penghuniLogin"));
+    const tbody = document.querySelector("#tabelPenghuni tbody");
 
-      window.penghuniData.forEach(p => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td>${p.namaLengkap}</td>
-          <td>${p.nomorKamar}</td>
-          <td>${p.tipeSewa}</td>
-          <td>${p.sistemPembayaran}</td>
-          <td>${p.statusPembayaranAwal}</td>
-          <td>${p.tanggalBayarTerakhir}</td>
-          <td>${p.tanggalPembayaranSelanjutnya}</td>
-        `;
-        tbody.appendChild(row);
-      });
-    });
-  </script>
+    if (!penghuni) {
+      alert("Anda belum login.");
+      window.location.href = "login.html";
+      return;
+    }
+
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${penghuni.namaLengkap}</td>
+      <td>${penghuni.nomorKamar}</td>
+      <td>${penghuni.tipeSewa}</td>
+      <td>${penghuni.sistemPembayaran}</td>
+      <td>${penghuni.statusPembayaranAwal}</td>
+      <td>${penghuni.tanggalBayarTerakhir}</td>
+      <td>${penghuni.tanggalPembayaranSelanjutnya}</td>
+    `;
+    tbody.appendChild(row);
+  });
+</script>
+
 </body>
 </html>
