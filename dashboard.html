@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard Penghuni | Pondokan Yuza</title>
+  <script src="penghuni.js" defer></script>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+    th, td { border: 1px solid #ddd; padding: 8px; }
+    th { background-color: #f2f2f2; }
+  </style>
+</head>
+<body>
+  <h1>Dashboard Penghuni Kos</h1>
+  <table id="tabelPenghuni">
+    <thead>
+      <tr>
+        <th>Nama</th>
+        <th>Kamar</th>
+        <th>Sewa</th>
+        <th>Sistem Pembayaran</th>
+        <th>Status Awal</th>
+        <th>Tgl Bayar Terakhir</th>
+        <th>Tgl Bayar Selanjutnya</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const tbody = document.querySelector("#tabelPenghuni tbody");
+
+      window.penghuniData.forEach(p => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${p.namaLengkap}</td>
+          <td>${p.nomorKamar}</td>
+          <td>${p.tipeSewa}</td>
+          <td>${p.sistemPembayaran}</td>
+          <td>${p.statusPembayaranAwal}</td>
+          <td>${p.tanggalBayarTerakhir}</td>
+          <td>${p.tanggalPembayaranSelanjutnya}</td>
+        `;
+        tbody.appendChild(row);
+      });
+    });
+  </script>
+</body>
+</html>
